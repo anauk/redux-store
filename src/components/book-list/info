@@ -1,0 +1,14 @@
+рендеринг списка
+
+BookList при загрузке будет запрашивать данные, соответственно
+у него будет метод жизненного цикла. Поэтому он должен быть компонентом классом.
+В нем получаем список книг в props.
+И возвращаем их в return.
+
+Для получения данных из Redux Store мы используем connect  and mapStateToProps:
+const Person=({name})=>{
+return<p>(name}</p>;
+
+const mapStateToProps=(state)=>{
+return{name: state.firstName};
+export default connect(mapStateToProps)(Person);

@@ -1,9 +1,35 @@
-const booksLoaded = (newBooks) => {
+const booksRequested = () => {
+    //обязательный метод для отображения загрузки
     return {
-        type: 'BOOKS_LOADED',
+        type: 'FETCH_BOOKS_REQUEST'
+    }
+};
+const booksLoaded = (newBooks) => {
+    // обязательный метод для загрузки книг или чего-то
+    return {
+        type: 'FETCH_BOOKS_SUCCESS',
         payload: newBooks
     };
 };
+const booksError = (error) => {
+    // обязательный метод для вывода ошибки если что-то пошло не так
+    return {
+        type: 'FETCH_BOOKS_FAILURE',
+        payload: error
+    }
+};
+export const bookAddedToCart = (bookId) => {
+    return {
+        type: 'BOOK_ADDED_TO_CART',
+        payload: bookId
+    };
+};
+const fetchBooks = (bookstoreService, dispatch) => () => {
+    dispatch(booksRequested());
+    bookstoreService.getBooks()
+        .then(data => dispatch(booksLoaded(data)))
+        .catch(error => dispatch(booksError(error)));
+}
 export {
-    booksLoaded
+    fetchBooks
 };
