@@ -17,8 +17,8 @@ const BookList = ({books, onAddedToCart}) => {
                     return (
                         <li key={book.id}>
                             <BookListItem
-                                onAddedToCart={()=>onAddedToCart(book.id)}
-                                book={book}/></li>
+                                book={book}
+                                onAddedToCart={()=>onAddedToCart(book.id)}/></li>
                     )
                 })
             }
@@ -29,21 +29,6 @@ const BookList = ({books, onAddedToCart}) => {
 class BookListContainer extends Component {
 
     componentDidMount() {
-        //1.receive data
-        // const {
-        //     bookstoreService,
-        //     booksLoaded,
-        //     booksRequested,
-        //     booksError
-        // } = this.props;
-        // booksRequested();
-        //const data = bookstoreService.getBooks();
-        //console.log(data);
-        //2.dispacth action to store
-        //this.props.booksLoaded(data);
-        // bookstoreService.getBooks()
-        //     .then((data) => booksLoaded(data))
-        //     .catch(error=> booksError(error));
         this.props.fetchBooks();
     }
 
